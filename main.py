@@ -431,7 +431,6 @@ def process_pipeline_core(message, input_data_map, is_file_mode=False, is_zip_mo
                     polling_msg = (
                         f"🔍 <b>ZIP Multi-Scanning:</b> {stats['checked']}/{total_cookies_found}\n"
                         f"✅ <b>Hits:</b> {stats['hits']} | ❌ <b>Failed:</b> {stats['failed']} | 🚫 <b>Filtered:</b> {stats['filtered']}\n"
-                        f"🚫 <b>Duplicates Found:</b> {stats['duplicates']}"
                     )
                     try: bot.edit_message_text(chat_id=message.chat.id, message_id=status_msg.message_id, text=polling_msg)
                     except: pass
@@ -453,7 +452,6 @@ def process_pipeline_core(message, input_data_map, is_file_mode=False, is_zip_mo
             f"✅ <b>Hits:</b> {stats['hits']}\n"
             f"🚫 <b>Filtered (Free+Hold):</b> {stats['filtered']}\n"
             f"❌ <b>Failed:</b> {stats['failed']}\n"
-            f"🚫 <b>Duplicates Found:</b> {stats['duplicates']}"
         )
 
         if stats['hits'] > 0 or stats['filtered'] > 0:
