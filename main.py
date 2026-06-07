@@ -93,18 +93,172 @@ IOS_HEADERS = {
 }
 
 MONTH_ALIASES = {
-    "january": 1, "enero": 1, "janvier": 1, "januar": 1, "janeiro": 1, "ocak": 1, "jan": 1, "stycznia": 1, "tháng 1": 1, "tháng 01": 1,
-    "february": 2, "febrero": 2, "fevrier": 2, "fevereiro": 2, "subat": 2, "feb": 2, "lutego": 2, "tháng 2": 2, "tháng 02": 2,
-    "march": 3, "marzo": 3, "mars": 3, "marco": 3, "marzec": 3, "mart": 3, "marz": 3, "marca": 3, "tháng 3": 3, "tháng 03": 3,
-    "april": 4, "abril": 4, "avril": 4, "kwiecien": 4, "nisan": 4, "apr": 4, "kwietnia": 4, "tháng 4": 4, "tháng 04": 4,
-    "may": 5, "mayo": 5, "mai": 5, "maj": 5, "maggio": 5, "mayis": 5, "maja": 5, "tháng 5": 5, "tháng 05": 5,
-    "june": 6, "junio": 6, "juin": 6, "haziran": 6, "czerwiec": 6, "juni": 6, "giugno": 6, "czerwca": 6, "tháng 6": 6, "tháng 06": 6,
-    "july": 7, "julio": 7, "juillet": 7, "temmuz": 7, "juli": 7, "luglio": 7, "lipca": 7, "tháng 7": 7, "tháng 07": 7,
-    "august": 8, "agosto": 8, "aout": 8, "août": 8, "sierpien": 8, "agustus": 8, "sierpnia": 8, "tháng 8": 8, "tháng 08": 8,
-    "september": 9, "septiembre": 9, "setembro": 9, "eylul": 9, "sept": 9, "settembre": 9, "wrzesnia": 9, "tháng 9": 9, "tháng 09": 9,
-    "october": 10, "octubre": 10, "outubro": 10, "ekim": 10, "oktober": 10, "ottobre": 10, "pazdziernika": 10, "tháng 10": 10,
-    "november": 11, "noviembre": 11, "novembro": 11, "kasim": 11, "novembre": 11, "listopada": 11, "tháng 11": 11,
-    "december": 12, "diciembre": 12, "dezembro": 12, "aralik": 12, "dicembre": 12, "grudnia": 12, "tháng 12": 12
+    # January
+    "january": 1, "jan": 1, "jan.": 1,
+    "enero": 1,
+    "janvier": 1,
+    "januar": 1,
+    "janeiro": 1,
+    "gennaio": 1,
+    "ocak": 1,
+    "styczen": 1, "stycznia": 1,
+    "ianuarie": 1,
+    "leden": 1,
+    "январь": 1, "января": 1,
+    "一月": 1,
+    "tháng 1": 1, "tháng 01": 1,
+
+    # February
+    "february": 2, "feb": 2, "feb.": 2,
+    "febrero": 2,
+    "fevrier": 2, "février": 2,
+    "fevereiro": 2,
+    "februar": 2,
+    "febbraio": 2,
+    "subat": 2, "şubat": 2,
+    "luty": 2, "lutego": 2,
+    "februarie": 2,
+    "unor": 2,
+    "февраль": 2, "февраля": 2,
+    "二月": 2,
+    "tháng 2": 2, "tháng 02": 2,
+
+    # March
+    "march": 3, "mar": 3, "mar.": 3,
+    "marzo": 3,
+    "mars": 3,
+    "marco": 3, "março": 3,
+    "marz": 3, "märz": 3,
+    "mart": 3,
+    "marzec": 3, "marca": 3,
+    "martie": 3,
+    "brezen": 3,
+    "март": 3, "марта": 3,
+    "三月": 3,
+    "tháng 3": 3, "tháng 03": 3,
+
+    # April
+    "april": 4, "apr": 4, "apr.": 4,
+    "abril": 4,
+    "avril": 4,
+    "aprile": 4,
+    "kwiecien": 4, "kwietnia": 4,
+    "nisan": 4,
+    "aprilie": 4,
+    "duben": 4,
+    "апрель": 4, "апреля": 4,
+    "四月": 4,
+    "tháng 4": 4, "tháng 04": 4,
+
+    # May
+    "may": 5,
+    "mayo": 5,
+    "mai": 5,
+    "maj": 5, "maja": 5,
+    "maggio": 5,
+    "mayis": 5, "mayıs": 5,
+    "mei": 5,
+    "kveten": 5,
+    "май": 5, "мая": 5,
+    "五月": 5,
+    "tháng 5": 5, "tháng 05": 5,
+
+    # June
+    "june": 6, "jun": 6, "jun.": 6,
+    "junio": 6,
+    "juin": 6,
+    "juni": 6,
+    "giugno": 6,
+    "haziran": 6,
+    "czerwiec": 6, "czerwca": 6,
+    "iunie": 6,
+    "cerven": 6, "červen": 6,
+    "июнь": 6, "июня": 6,
+    "六月": 6,
+    "tháng 6": 6, "tháng 06": 6,
+
+    # July
+    "july": 7, "jul": 7, "jul.": 7,
+    "julio": 7,
+    "juillet": 7,
+    "juli": 7,
+    "luglio": 7,
+    "temmuz": 7,
+    "lipiec": 7, "lipca": 7,
+    "iulie": 7,
+    "cervenec": 7, "červenec": 7,
+    "июль": 7, "июля": 7,
+    "七月": 7,
+    "tháng 7": 7, "tháng 07": 7,
+
+    # August
+    "august": 8, "aug": 8, "aug.": 8,
+    "agosto": 8,
+    "aout": 8, "août": 8,
+    "augustus": 8,
+    "sierpien": 8, "sierpień": 8, "sierpnia": 8,
+    "agustus": 8,
+    "augusto": 8,
+    "srpen": 8,
+    "август": 8, "августа": 8,
+    "八月": 8,
+    "tháng 8": 8, "tháng 08": 8,
+
+    # September
+    "september": 9, "sep": 9, "sept": 9, "sep.": 9,
+    "septiembre": 9,
+    "septembre": 9,
+    "setembro": 9,
+    "settembre": 9,
+    "eylul": 9, "eylül": 9,
+    "wrzesien": 9, "wrzesień": 9, "wrzesnia": 9,
+    "septembrie": 9,
+    "zari": 9,
+    "сентябрь": 9, "сентября": 9,
+    "九月": 9,
+    "tháng 9": 9, "tháng 09": 9,
+
+    # October
+    "october": 10, "oct": 10, "oct.": 10,
+    "octubre": 10,
+    "octobre": 10,
+    "outubro": 10,
+    "oktober": 10,
+    "ottobre": 10,
+    "ekim": 10,
+    "pazdziernik": 10, "październik": 10, "pazdziernika": 10,
+    "octombrie": 10,
+    "rijen": 10,
+    "октябрь": 10, "октября": 10,
+    "十月": 10,
+    "tháng 10": 10,
+
+    # November
+    "november": 11, "nov": 11, "nov.": 11,
+    "noviembre": 11,
+    "novembre": 11,
+    "novembro": 11,
+    "kasim": 11, "kasım": 11,
+    "listopad": 11, "listopada": 11,
+    "noiembrie": 11,
+    "listopad_cz": 11,
+    "ноябрь": 11, "ноября": 11,
+    "十一月": 11,
+    "tháng 11": 11,
+
+    # December
+    "december": 12, "dec": 12, "dec.": 12,
+    "diciembre": 12,
+    "decembre": 12, "décembre": 12,
+    "dezembro": 12,
+    "dicembre": 12,
+    "aralik": 12, "aralık": 12,
+    "grudzien": 12, "grudzień": 12, "grudnia": 12,
+    "decembrie": 12,
+    "prosinec": 12,
+    "декабрь": 12, "декабря": 12,
+    "十二月": 12,
+    "tháng 12": 12
 }
 
 def is_authorized(message) -> bool:
@@ -395,7 +549,15 @@ def process_pipeline_core(message, input_data_map, is_file_mode=False, is_zip_mo
                     profiles_list = details.get("profiles") or "lucky, Guest"
                     p_count = len(str(profiles_list).split(","))
 
+                    # 🎯 FIXED FOLDER ASSIGNMENT LOGIC HERE
+                    folder_name = "Free"
+                    if status == "Hold Status / Inactive":
+                        folder_name = "Hold"
+                    elif status == "Subscribed":
+                        folder_name = derived_plan
+
                     block_out = (
+                        f"-----------------❖ @Vipsenpai Netflix Account Info ❖-----------------\n"
                         f"📌 Status: {status}\n"
                         f"👤 Name: {details.get('name') or 'N/A'}\n"
                         f"📧 Email: {details.get('email') or 'N/A'}\n"
@@ -413,14 +575,18 @@ def process_pipeline_core(message, input_data_map, is_file_mode=False, is_zip_mo
                         f"✅ Email Verified: {details.get('email_verified') or 'Yes'}\n"
                         f"🛡️ Membership Status: {details.get('membership_status') or 'CURRENT_MEMBER'}\n"
                         f"🎭 Profiles ({p_count}): {profiles_list}\n\n"
-                        f"✅ COOKIE: NetflixId={current_cookie}\n\n"
+                        f"✅ Cookie: NetflixId={current_cookie}\n\n"
                         f"📱 Phone Login:\nhttps://www.netflix.com/unsupported?nftoken={token}\n\n"
                         f"🖥️ PC Login:\nhttps://www.netflix.com/account?nftoken={token}\n\n"
                         f"🔑 Login Link:\nhttps://www.netflix.com/login?nftoken={token}\n\n"
-                        f"⏳ Token Expiry: {details.get('token_expiry')}\n\n"
-                        f"❖ @Vipsenpai Extraction Engine\n\n"
+                        f"⏳ Token Expiry: {details.get('token_expiry')}\n"
+                        f"❖ @Vipsenpai Extraction Engine\n"
                     )
-                    valid_cookie_details_map[current_cookie] = block_out
+                    
+                    valid_cookie_details_map[current_cookie] = {
+                        "text": block_out,
+                        "folder": folder_name
+                    }
 
                 if stats["checked"] % 2 == 0 or stats["checked"] == total_cookies_found:
                     polling_msg = (
@@ -454,7 +620,7 @@ def process_pipeline_core(message, input_data_map, is_file_mode=False, is_zip_mo
             for cookie in aggregated_unique_cookies:
                 if cookie in valid_cookie_details_map:
                     master_buffer.write(f"-----------------@VipSenpai • CHECKED - {stats['hit_index']}-----------------\n\n")
-                    master_buffer.write(valid_cookie_details_map[cookie])
+                    master_buffer.write(valid_cookie_details_map[cookie]["text"])
                     master_buffer.write("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n")
                     stats['hit_index'] += 1
             
@@ -462,30 +628,33 @@ def process_pipeline_core(message, input_data_map, is_file_mode=False, is_zip_mo
             master_buffer.close()
             
             master_file_payload = io.BytesIO(master_bytes)
-            master_file_payload.name = f"All_Combined_@VipSenpai_Cookie_{datetime.now().strftime('%d_%m_%Y')}.txt"
+            master_file_payload.name = f"All_Combined_@VipSenpai_Cookies_{datetime.now().strftime('%d_%m_%Y')}.txt"
             bot.send_document(chat_id=message.chat.id, document=master_file_payload, caption="📝 <b>All Unique Combined Results Text Log File</b>")
 
             zip_buffer = io.BytesIO()
             with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as output_zip:
+                folder_content = {}
                 for original_filename, cookie_list in file_cookie_mapping.items():
-                    sub_file_content = io.StringIO()
                     sub_hit_index = 1
                     for cookie in cookie_list:
                         if cookie in valid_cookie_details_map:
-                            sub_file_content.write(f"-----------------@VipSenpai • CHECKED - {sub_hit_index}-----------------\n\n")
-                            sub_file_content.write(valid_cookie_details_map[cookie])
-                            sub_file_content.write("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n")
+                            folder = valid_cookie_details_map[cookie]["folder"]
+                            clean_fn = os.path.basename(original_filename)
+                            path = f"{folder}/Checked_{clean_fn}"
+                            
+                            if path not in folder_content:
+                                folder_content[path] = io.StringIO()
+                                
+                            folder_content[path].write(f"-----------------@VipSenpai • CHECKED - {sub_hit_index}-----------------\n\n")
+                            folder_content[path].write(valid_cookie_details_map[cookie]["text"])
+                            folder_content[path].write("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n")
                             sub_hit_index += 1
-                    
-                    final_sub_text = sub_file_content.getvalue()
-                    sub_file_content.close()
-                    
-                    if final_sub_text.strip():
-                        clean_fn = os.path.basename(original_filename)
-                        output_zip.writestr(f"Checked_{clean_fn}", final_sub_text)
+                            
+                for path, sio in folder_content.items():
+                    output_zip.writestr(path, sio.getvalue())
 
             zip_buffer.seek(0)
-            zip_buffer.name = f"Checked_@VipSenpai_Cookie_{datetime.now().strftime('%d_%m_%Y')}.zip"
+            zip_buffer.name = f"Categorized_Folders_Package_{datetime.now().strftime('%d_%m_%Y')}.zip"
             bot.send_document(chat_id=message.chat.id, document=zip_buffer, caption=final_summary_report)
         else:
             bot.send_message(chat_id=message.chat.id, text=final_summary_report + "\n\n[!] No active elements salvaged from compressed package.")
@@ -548,7 +717,15 @@ def process_pipeline_core(message, input_data_map, is_file_mode=False, is_zip_mo
                     profiles_list = details.get("profiles") or "lucky, Guest"
                     p_count = len(str(profiles_list).split(","))
 
+                    # 🎯 FIXED FOLDER ASSIGNMENT LOGIC HERE
+                    folder_name = "Free"
+                    if status == "Hold Status / Inactive":
+                        folder_name = "Hold"
+                    elif status == "Subscribed":
+                        folder_name = derived_plan
+
                     block_out = (
+                        f"-----------------❖ @Vipsenpai Netflix Account Info ❖-----------------\n"
                         f"📌 Status: {status}\n"
                         f"👤 Name: {details.get('name') or 'N/A'}\n"
                         f"📧 Email: {details.get('email') or 'N/A'}\n"
@@ -566,14 +743,18 @@ def process_pipeline_core(message, input_data_map, is_file_mode=False, is_zip_mo
                         f"✅ Email Verified: {details.get('email_verified') or 'Yes'}\n"
                         f"🛡️ Membership Status: {details.get('membership_status') or 'CURRENT_MEMBER'}\n"
                         f"🎭 Profiles ({p_count}): {profiles_list}\n\n"
-                        f"✅ COOKIE: NetflixId={current_cookie}\n\n"
+                        f"✅ Cookie: NetflixId={current_cookie}\n\n"
                         f"📱 Phone Login:\nhttps://www.netflix.com/unsupported?nftoken={token}\n\n"
                         f"🖥️ PC Login:\nhttps://www.netflix.com/account?nftoken={token}\n\n"
                         f"🔑 Login Link:\nhttps://www.netflix.com/login?nftoken={token}\n\n"
                         f"⏳ Token Expiry: {details.get('token_expiry')}\n\n"
                         f"❖ {WATERMARK}\n\n"
                     )
-                    valid_cookie_details_map[current_cookie] = block_out
+                    
+                    valid_cookie_details_map[current_cookie] = {
+                        "text": block_out,
+                        "folder": folder_name
+                    }
 
                 if stats["checked"] % 2 == 0 or stats["checked"] == total_cookies:
                     polling_msg = (
@@ -607,7 +788,7 @@ def process_pipeline_core(message, input_data_map, is_file_mode=False, is_zip_mo
             for cookie in initial_unique_cookies:
                 if cookie in valid_cookie_details_map:
                     output_text_buffer.write(f"-----------------@VipSenpai • CHECKED - {stats['hit_index']}-----------------\n\n")
-                    output_text_buffer.write(valid_cookie_details_map[cookie])
+                    output_text_buffer.write(valid_cookie_details_map[cookie]["text"])
                     output_text_buffer.write("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n")
                     stats['hit_index'] += 1
                     
@@ -616,6 +797,30 @@ def process_pipeline_core(message, input_data_map, is_file_mode=False, is_zip_mo
             file_payload = io.BytesIO(result_bytes)
             file_payload.name = f"Checked_@VipSenpai_Results_{datetime.now().strftime('%d_%m_%Y')}.txt"
             bot.send_document(chat_id=message.chat.id, document=file_payload, caption=final_summary_report)
+
+            # 🎯 Generate Organized ZIP file for .txt uploads
+            zip_buffer = io.BytesIO()
+            with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as output_zip:
+                folder_content = {}
+                for cookie in initial_unique_cookies:
+                    if cookie in valid_cookie_details_map:
+                        folder = valid_cookie_details_map[cookie]["folder"]
+                        path = f"{folder}/{folder}_Accounts.txt"
+                        
+                        if path not in folder_content:
+                            folder_content[path] = io.StringIO()
+                            
+                        folder_content[path].write(f"-----------------@VipSenpai • CHECKED-----------------\n\n")
+                        folder_content[path].write(valid_cookie_details_map[cookie]["text"])
+                        folder_content[path].write("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n")
+                
+                for path, sio in folder_content.items():
+                    output_zip.writestr(path, sio.getvalue())
+
+            zip_buffer.seek(0)
+            zip_buffer.name = f"Categorized_@VipSenpai_Package_{datetime.now().strftime('%d_%m_%Y')}.zip"
+            bot.send_document(chat_id=message.chat.id, document=zip_buffer, caption="📁 <b>Categorized_@VipSenpai_Accounts (By Plan)</b>")
+
         else:
             bot.send_message(chat_id=message.chat.id, text=final_summary_report + "\n\n[!] No active cookies gathered.")
 
@@ -641,6 +846,7 @@ def process_pipeline_core(message, input_data_map, is_file_mode=False, is_zip_mo
             final_token = token if (token and str(token).lower() != "none") else "Unavailable"
 
             response_text = (
+                f"-----------------❖ @Vipsenpai Netflix Account Info ❖-----------------\n"
                 f"📌 <b>Status:</b> {status}\n"
                 f"👤 <b>Name:</b> {details.get('name') or 'N/A'}\n"
                 f"📧 <b>Email:</b> {details.get('email') or 'N/A'}\n"
